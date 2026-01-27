@@ -24,7 +24,6 @@ The analysis is intended for **transportation researchers, planners, and data an
 ## 📁 Repository Structure
 
 KCM_Ridership_Data_Analysis  
-notebooks:     
 - Comparison (ORCA vs PSRC).ipynb  
 - flows.ipynb  
 data:                     
