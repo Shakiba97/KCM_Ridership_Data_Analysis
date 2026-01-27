@@ -24,20 +24,16 @@ The analysis is intended for **transportation researchers, planners, and data an
 ## 📁 Repository Structure
 
 KCM_Ridership_Data_Analysis/
-├── notebooks/                     # Jupyter notebooks for analysis
-│   ├── Comparison (ORCA vs PSRC).ipynb
-│   ├── flows.ipynb
-│   └── Untitled_*.ipynb
-├── data/                          # Input and processed datasets
-│   ├── TAZ.csv
-│   ├── output.csv
-│   └── output.json
-├── maps/                          # Interactive HTML visualizations
-│   ├── map2023-04-01.html
-│   ├── map2023-04-02.html
-│   └── map2023-04-03.html
-├── README.md
-└── LICENSE (optional)
+notebooks:                   
+- Comparison (ORCA vs PSRC).ipynb
+- flows.ipynb
+data:                          
+- TAZ.csv
+- output.csv
+maps (Interactive HTML visualizations):
+- map2023-04-01.html
+- map2023-04-02.html
+- map2023-04-03.html
 
 ## 🛠️ Requirements
 
