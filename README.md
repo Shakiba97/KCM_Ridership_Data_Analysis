@@ -23,14 +23,14 @@ The analysis is intended for **transportation researchers, planners, and data an
 
 ## 📁 Repository Structure
 
-KCM_Ridership_Data_Analysis/
-notebooks:                   
-- Comparison (ORCA vs PSRC).ipynb
-- flows.ipynb
-data:                          
+KCM_Ridership_Data_Analysis  
+notebooks:                     
+- Comparison (ORCA vs PSRC).ipynb  
+- flows.ipynb    
+data:                              
 - TAZ.csv
-- output.csv
-maps (Interactive HTML visualizations):
+- output.csv  
+maps (Interactive HTML visualizations):  
 - map2023-04-01.html
 - map2023-04-02.html
 - map2023-04-03.html
