@@ -9,7 +9,7 @@ King County Metro is the primary public transit agency serving the Seattle metro
 
 The analysis focuses on:
 - Comparing ORCA-derived ridership counts against **PSRC** (Puget Sound Regional Council) travel survey estimates
-- Reconstructing transit **origin–destination flows** by linking tap-on and tap-off events
+- Reconstructing transit **origin–destination flows** by linking tap-on events
 - Mapping ridership spatially using **TAZ** (Traffic Analysis Zone) boundaries
 - Generating interactive visualizations of daily and per-card ridership patterns
 
