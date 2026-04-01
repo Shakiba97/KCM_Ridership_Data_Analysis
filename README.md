@@ -1,52 +1,151 @@
-# 🚌 King County Metro Ridership Data Analysis
+# 🚌 KCM Ridership Data Analysis
 
-**Transit Ridership Recovery & SmartCard Analysis in King County, Washington**
-
-This repository contains data processing, analysis, and visualization tools for studying **King County Metro (KCM) ridership patterns** using transit SmartCard (ORCA) data and supporting datasets. The project focuses on understanding temporal and spatial ridership trends and comparing ridership statistics across data sources.
+Analysis of King County Metro (KCM) transit ridership using ORCA SmartCard transaction data. This project explores spatial and temporal ridership patterns, origin–destination flows, and cross-source comparisons between ORCA tap data and PSRC travel survey estimates.
 
 ---
 
-## 📌 Project Overview
+## 📋 Table of Contents
 
-This project analyzes public transit ridership in King County using SmartCard transaction data and geographic information. It supports exploratory analysis of ridership recovery trends, origin–destination flows, and spatial distribution of transit usage.
-
-The analysis is intended for **transportation researchers, planners, and data analysts** interested in transit performance evaluation and ridership behavior.
-
-### Key Objectives
-
-- Preprocess and analyze ORCA SmartCard ridership data  
-- Compare ridership trends across datasets (e.g., ORCA vs. PSRC)  
-- Analyze spatial and temporal ridership patterns  
-- Visualize ridership flows and geographic distributions using interactive maps  
+- [Background](#background)
+- [Project Structure](#project-structure)
+- [Notebooks](#notebooks)
+- [Data](#data)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Outputs](#outputs)
+- [Contributing](#contributing)
 
 ---
 
-## 📁 Repository Structure
+## Background
 
-KCM_Ridership_Data_Analysis  
-- Comparison (ORCA vs PSRC).ipynb  
-- flows.ipynb  
-data:                     
-- TAZ.csv
-- output.csv  
-maps (Interactive HTML visualizations):  
-- map2023-04-01.html
-- map2023-04-02.html
-- map2023-04-03.html
+King County Metro is the primary public transit agency serving the Seattle metro area. This project analyzes ridership behavior using **ORCA** (One Regional Card for All), the regional SmartCard fare payment system used across King County Metro, Sound Transit, and other Puget Sound transit agencies.
 
-## 🛠️ Requirements
+The analysis focuses on:
+- Comparing ORCA-derived ridership counts against **PSRC** (Puget Sound Regional Council) travel survey estimates
+- Reconstructing transit **origin–destination flows** by linking tap-on and tap-off events
+- Mapping ridership spatially using **TAZ** (Traffic Analysis Zone) boundaries
+- Generating interactive visualizations of daily and per-card ridership patterns
 
-This project is implemented in **Python** using common data analysis and visualization libraries.
+---
 
-Typical dependencies include:
-- `pandas`
-- `numpy`
-- `geopandas`
-- `matplotlib`
-- `folium`
-- `jupyter`
+## Project Structure
 
-Install dependencies with:
+```
+KCM_Ridership_Data_Analysis/
+│
+├── notebooks/
+│   ├── 01_orca_psrc_comparison.ipynb   # ORCA vs PSRC ridership comparison
+│   ├── 02_ridership_flows.ipynb        # OD flow reconstruction and mapping
+│   └── scratch/                        # Exploratory/experimental notebooks
+│
+├── data/
+│   ├── raw/
+│   │   └── TAZ.csv                     # Traffic Analysis Zone reference data
+│   └── processed/                      # Generated outputs (gitignored)
+│
+├── outputs/
+│   └── maps/                           # Generated HTML map files (gitignored)
+│
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Notebooks
+
+| Notebook | Description |
+|---|---|
+| `01_orca_psrc_comparison.ipynb` | Loads ORCA SmartCard transaction data and PSRC survey estimates, aligns them by time period and geography, and produces comparison visualizations highlighting discrepancies and agreement between the two sources. |
+| `02_ridership_flows.ipynb` | Reconstructs passenger origin–destination flows from sequential tap events, aggregates flows by TAZ, and generates interactive Folium maps showing ridership movement across the network. |
+| `scratch/` | Exploratory notebooks used during development. Not intended for reproducibility. |
+
+---
+
+## Data
+
+### Inputs
+
+| File | Location | Description |
+|---|---|---|
+| `TAZ.csv` | `data/raw/` | Traffic Analysis Zone IDs and attributes for King County |
+| ORCA transaction data | Not included — see below | Raw SmartCard tap events (access restricted) |
+
+> **Note:** ORCA transaction data contains personally identifiable information and is not publicly available. Access can be requested through [King County Metro](https://kingcounty.gov/en/dept/metro) or [PSRC](https://www.psrc.org/) for research purposes.
+
+### Outputs (generated, gitignored)
+
+| File | Location | Description |
+|---|---|---|
+| `output.csv` | `data/processed/` | Processed ridership records |
+| `output.json` | `data/processed/` | Flow data in JSON format |
+| `output_with_counts.json` | `data/processed/` | Flow data with aggregated trip counts |
+| `map_YYYY-MM-DD.html` | `outputs/maps/` | Interactive daily ridership maps |
+| `map for card_id_N.html` | `outputs/maps/` | Per-card trip trajectory maps |
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Python 3.9+
+- pip
+
+### Install dependencies
 
 ```bash
-pip install pandas numpy geopandas matplotlib folium jupyter
+git clone https://github.com/Shakiba97/KCM_Ridership_Data_Analysis.git
+cd KCM_Ridership_Data_Analysis
+pip install -r requirements.txt
+```
+
+### requirements.txt
+
+```
+pandas>=1.5
+numpy>=1.23
+geopandas>=0.12
+matplotlib>=3.6
+folium>=0.14
+jupyter>=1.0
+```
+
+---
+
+## Usage
+
+Launch Jupyter and run notebooks in order:
+
+```bash
+jupyter notebook
+```
+
+1. Start with `notebooks/01_orca_psrc_comparison.ipynb` to understand the data sources and their relationship.
+2. Run `notebooks/02_ridership_flows.ipynb` to reconstruct OD flows and generate interactive maps.
+
+Outputs will be saved to `data/processed/` and `outputs/maps/` automatically.
+
+---
+
+## Outputs
+
+The flow analysis generates interactive HTML maps (via Folium) showing:
+- **Daily ridership maps** — aggregate boardings across the network for a given date
+- **Per-card maps** — individual trip trajectories for specific ORCA cards (useful for validation)
+
+Open any `.html` file in `outputs/maps/` directly in a browser — no server required.
+
+---
+
+## Contributing
+
+This is a research project. If you'd like to extend the analysis or report issues, feel free to open an issue or pull request. Please keep scratch work in `notebooks/scratch/` and avoid committing generated output files.
+
+---
+
+## Acknowledgements
+
+Forked from [arsalanesmaili/kcm_ridership](https://github.com/arsalanesmaili/kcm_ridership). Data provided by King County Metro and the Puget Sound Regional Council.

@@ -1,0 +1,33 @@
+# IDE / editor config
+.idea/
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Generated outputs — don't commit these
+data/processed/
+outputs/
+
+# Specific generated files (if kept in root for legacy reasons)
+output.csv
+output.json
+output_with_counts.json
+map*.html
+map\ for\ card_id*.html
+
+# OS
+.DS_Store
+Thumbs.db
